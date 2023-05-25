@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "986039514082",
+    "project_id": "ecommerctraining",
+    "storage_bucket": "ecommerctraining.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986039514082:android:7a43e147a9dcf873e57fbb",
+        "android_client_info": {
+          "package_name": "com.example.ecommerc_training"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986039514082-2ejies4rqjlug6dj509m66hjil5s7pah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgbxEqvbL3BgJDwqm5ywCDHN--TzcGaPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986039514082-2ejies4rqjlug6dj509m66hjil5s7pah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
