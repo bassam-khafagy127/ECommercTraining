@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">E-Commerc Training</string>
+    <string name="app_name">Bazar</string>
+    <string name="the_right_address_to_shopping_anyday">The Right Address \nTo Shopping\n Anyday</string>
+    <string name="g_best_quality">It is now very easy to reach the \n best quality among all the \n products on the internet!</string>
+    <string name="start">Start</string>
+    <string name="g_the_right_address">The Right Address \n For Shopping \n Anyday</string>
+    <string name="g_let_s_login">Let\'s Login</string>
+    <string name="g_don_t_have_an_account_register">Don\'t have an account? Register</string>
+        <string name="g_forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="loginWithGoogle">Google</string>
+    <string name="loginWithFacebook">FaceBook</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="letRegister">Lets\'s Register</string>
+    <string name="doYouHaveAccount">Do you have an account? Login!</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="register">Register</string>
 </resources>

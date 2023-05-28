@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftTextureGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightTextureGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".88" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftEllipseGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightEllipseGuideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".85" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineEllipseTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineEllipseBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".50" />
+
+
+        <ImageView
+            android:id="@+id/left_Texture"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/texture_left"
+            app:layout_constraintDimensionRatio="1:4"
+            app:layout_constraintEnd_toStartOf="@id/leftTextureGuideLine"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/right_Texture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/texture_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideLineEllipseTop" />
+
+        <ImageView
+            android:id="@+id/ellipse"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ellips"
+            app:layout_constraintBottom_toBottomOf="@id/guideLineEllipseBottom"
+            app:layout_constraintEnd_toEndOf="@id/rightEllipseGuideLine"
+            app:layout_constraintStart_toStartOf="@id/leftEllipseGuideLine"
+            app:layout_constraintTop_toTopOf="@id/guideLineEllipseTop" />
+
+        <TextView
+            android:id="@+id/tv_theRightDayToShopping"
+            style="@style/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/theRightAddressMarginTop"
+            android:text="@string/the_right_address_to_shopping_anyday"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/ellipse"
+            app:layout_constraintEnd_toEndOf="@id/ellipse"
+            app:layout_constraintStart_toStartOf="@id/ellipse"
+            app:layout_constraintTop_toBottomOf="@id/left_Texture" />
+
+        <TextView
+            android:id="@+id/tv_Quality"
+            style="@style/h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/g_best_quality"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/tv_theRightDayToShopping"
+            app:layout_constraintStart_toStartOf="@id/tv_theRightDayToShopping"
+            app:layout_constraintTop_toBottomOf="@id/tv_theRightDayToShopping" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            style="@style/blueButtonStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_Quality"
+            app:layout_constraintStart_toStartOf="@id/tv_Quality"
+            app:layout_constraintTop_toBottomOf="@id/tv_Quality" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
