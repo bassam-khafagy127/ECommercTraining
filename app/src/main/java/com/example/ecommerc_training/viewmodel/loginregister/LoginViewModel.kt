@@ -2,13 +2,18 @@ package com.example.ecommerc_training.viewmodel.loginregister
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ecommerc_training.data.model.User
+import com.example.ecommerc_training.utill.RegisterValidation
+import com.example.ecommerc_training.utill.RegistrationFieldState
 import com.example.ecommerc_training.utill.Resource
+import com.example.ecommerc_training.utill.validateEmail
+import com.example.ecommerc_training.utill.validatePassword
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,24 +23,42 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     private val _login = MutableStateFlow<Resource<FirebaseUser>>(Resource.Unspecified())
     val login = _login.asStateFlow()
-    fun signInWithEmailPassWord(user: User, password: String) {
-        viewModelScope.launch {
-            _login.emit(Resource.Loading())
-        }
 
-        firebaseAut.signInWithEmailAndPassword(user.email, password).addOnSuccessListener {
+    private val _registerValidation = Channel<RegistrationFieldState>()
+    val validation = _registerValidation.receiveAsFlow()
+
+    fun signInWithEmailPassWord(email: String, password: String) {
+        if (chickValidation(email, password)) {
             viewModelScope.launch {
-                it.user?.let {
-                    _login.value = Resource.Success(it)
+                _login.emit(Resource.Loading())
+            }
+            firebaseAut.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+                viewModelScope.launch {
+                    it.user?.let {
+                        _login.value = Resource.Success(it)
+                    }
+                }
+            }.addOnFailureListener {
+                viewModelScope.launch {
+                    it.message?.let {
+                        _login.value = Resource.Error(it)
+                    }
                 }
             }
-        }.addOnFailureListener {
+        } else {
+            val registerFieldState =
+                RegistrationFieldState(validateEmail(email), validatePassword(password))
             viewModelScope.launch {
-                it.message?.let {
-                    _login.value = Resource.Error(it)
-                }
+                _registerValidation.send(registerFieldState)
+
             }
         }
+    }
 
+    private fun chickValidation(email: String, password: String): Boolean {
+        val emailValidate = validateEmail(email)
+        val passwordValidate = validatePassword(password)
+        return (emailValidate is RegisterValidation.Success
+                && passwordValidate is RegisterValidation.Success)
     }
 }

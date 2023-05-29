@@ -8,13 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.ecommerc_training.R
 import com.example.ecommerc_training.data.model.User
 import com.example.ecommerc_training.databinding.FragmentRegisterBinding
 import com.example.ecommerc_training.utill.Constant.REG_TAG
+import com.example.ecommerc_training.utill.RegisterValidation
 import com.example.ecommerc_training.utill.Resource
 import com.example.ecommerc_training.viewmodel.loginregister.RegistryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -32,36 +36,59 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvDoYouHaveAccount.setOnClickListener {
+            val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
         binding.apply {
             registerBtn.setOnClickListener {
-
-                registerBtn.startAnimation()
                 val user = User(
                     edFirstName.text.toString(),
                     edLastName.text.toString(),
                     edEmail.text.toString().trim()
                 )
-                val password = edPassword.text.toString().trim()
+                val password = edPassword.text.toString()
 
                 viewModel.createUserWithEmailPassWord(user, password)
             }
-
         }
+
         lifecycleScope.launchWhenStarted {
             viewModel.register.collect {
                 when (it) {
+                    is Resource.Loading -> {
+                        Log.d(REG_TAG, "Loading")
+                        binding.registerBtn.startAnimation()
+                    }
 
                     is Resource.Error -> {
                         binding.registerBtn.revertAnimation()
                         Log.d(REG_TAG, it.message!!)
                     }
-                    is Resource.Loading -> Log.d(REG_TAG, "Loading")
+
                     is Resource.Success -> {
                         binding.registerBtn.revertAnimation()
                         Log.d(REG_TAG, it.data!!.uid)
                     }
-                    is Resource.Unspecified -> Log.d(REG_TAG, "Unspecified")
 
+                    is Resource.Unspecified -> Log.d(REG_TAG, "Unspecified")
+                }
+            }
+
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edEmail.error = validation.email.message
+                    }
+                }
+                if (validation.password is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edPassword.error = validation.password.message
+                    }
                 }
             }
 

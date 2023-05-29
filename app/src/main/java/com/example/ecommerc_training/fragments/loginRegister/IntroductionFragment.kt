@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.ecommerc_training.R
 import com.example.ecommerc_training.databinding.FragmentIntroductionBinding
-import com.example.ecommerc_training.databinding.FragmentLoginBinding
 
 
 class IntroductionFragment : Fragment(R.layout.fragment_introduction) {
@@ -23,5 +23,10 @@ class IntroductionFragment : Fragment(R.layout.fragment_introduction) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.startBtn.setOnClickListener {
+            val action =
+                IntroductionFragmentDirections.actionIntroductionFragmentToAccountOptionsFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }

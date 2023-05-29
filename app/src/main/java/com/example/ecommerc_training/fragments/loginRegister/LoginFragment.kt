@@ -8,12 +8,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.example.ecommerc_training.R
 import com.example.ecommerc_training.databinding.FragmentLoginBinding
 import com.example.ecommerc_training.utill.Constant
+import com.example.ecommerc_training.utill.RegisterValidation
 import com.example.ecommerc_training.utill.Resource
 import com.example.ecommerc_training.viewmodel.loginregister.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
@@ -29,10 +35,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvDonHaveAccount.setOnClickListener {
+            val action =
+                LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
         binding.apply {
             loginBtn.setOnClickListener {
-                loginBtn.startAnimation()
-
+                val email = edEmail.text.toString().trim()
+                val password = edPassword.text.toString()
+                viewModel.signInWithEmailPassWord(email, password)
             }
 
         }
@@ -44,7 +57,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         Log.d(Constant.REG_TAG, it.message!!)
                     }
 
-                    is Resource.Loading -> Log.d(Constant.REG_TAG, "Loading")
+                    is Resource.Loading -> {
+                        binding.loginBtn.startAnimation()
+                        Log.d(Constant.REG_TAG, "Loading")
+                    }
                     is Resource.Success -> {
                         binding.loginBtn.revertAnimation()
                         Log.d(Constant.REG_TAG, it.data!!.uid)
@@ -52,6 +68,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
                     is Resource.Unspecified -> Log.d(Constant.REG_TAG, "Unspecified")
 
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edEmail.error = validation.email.message
+                    }
+                }
+                if (validation.password is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.edPassword.error = validation.password.message
+                    }
                 }
             }
         }
