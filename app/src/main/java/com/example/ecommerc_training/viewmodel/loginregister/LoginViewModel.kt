@@ -40,7 +40,6 @@ class LoginViewModel @Inject constructor(
             }
             firebaseAut.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
-
                     viewModelScope.launch {
                         it.user?.let {
                             _login.value = Resource.Success(it)
