@@ -1,5 +1,6 @@
 package com.example.ecommerc_training.fragments.loginRegister
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.example.ecommerc_training.R
+import com.example.ecommerc_training.activites.ShoppingActivity
 import com.example.ecommerc_training.data.model.User
 import com.example.ecommerc_training.databinding.FragmentRegisterBinding
 import com.example.ecommerc_training.utill.Constant.REG_TAG
@@ -69,7 +71,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
                     is Resource.Success -> {
                         binding.registerBtn.revertAnimation()
-                        Log.d(REG_TAG, it.data!!.uid)
+                        startShoppingActivity()
                     }
 
                     is Resource.Unspecified -> Log.d(REG_TAG, "Unspecified")
@@ -93,6 +95,13 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             }
 
         }
+    }
+    private fun startShoppingActivity() {
+        val intent = Intent(requireActivity(), ShoppingActivity::class.java).also { intent ->
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        startActivity(intent)
+
     }
 }
 
