@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -72,9 +73,11 @@
             android:layout_height="@dimen/editTextHeight"
             android:layout_marginTop="40dp"
             android:hint="@string/email"
+            android:inputType="textImeMultiLine"
             app:layout_constraintEnd_toStartOf="@id/accountLoginRightGuideline"
             app:layout_constraintStart_toEndOf="@id/accountLoginLeftGuideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_donHaveAccount" />
+            app:layout_constraintTop_toBottomOf="@id/tv_donHaveAccount"
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/ed_password"
@@ -82,10 +85,12 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/editTextHeight"
             android:layout_marginTop="16dp"
+            android:inputType="textImeMultiLine"
             android:hint="@string/password"
             app:layout_constraintEnd_toStartOf="@id/accountLoginRightGuideline"
             app:layout_constraintStart_toEndOf="@id/accountLoginLeftGuideline"
-            app:layout_constraintTop_toBottomOf="@id/ed_email" />
+            app:layout_constraintTop_toBottomOf="@id/ed_email"
+            tools:ignore="TextFields" />
 
         <TextView
             android:id="@+id/tv_forgotPassword"

@@ -18,6 +18,7 @@ import com.example.ecommerc_training.utill.Constant.REG_TAG
 import com.example.ecommerc_training.utill.RegisterValidation
 import com.example.ecommerc_training.utill.Resource
 import com.example.ecommerc_training.viewmodel.loginregister.RegistryViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -67,6 +68,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                     is Resource.Error -> {
                         binding.registerBtn.revertAnimation()
                         Log.d(REG_TAG, it.message!!)
+                        Snackbar.make(requireView(), "${it.message}", Snackbar.LENGTH_LONG)
+                            .show()
                     }
 
                     is Resource.Success -> {
