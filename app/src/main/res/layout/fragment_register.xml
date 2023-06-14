@@ -132,8 +132,7 @@
             app:layout_constraintEnd_toStartOf="@id/accountRegisterRightGuideline"
             app:layout_constraintStart_toEndOf="@id/accountRegisterLeftGuideline"
             app:layout_constraintTop_toBottomOf="@id/ed_password"
-            app:spinning_bar_color="@color/white"
-            tools:layout_editor_absoluteY="523dp" />
+            app:spinning_bar_color="@color/white" />
 
         <ImageView
             android:id="@+id/faceBookLogin_btn"
