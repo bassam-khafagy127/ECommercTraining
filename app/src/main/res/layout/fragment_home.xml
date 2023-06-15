@@ -24,7 +24,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/search_now"
-            android:textSize="22sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/homeTabLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
