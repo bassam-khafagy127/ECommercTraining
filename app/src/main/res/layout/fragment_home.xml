@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -7,8 +8,62 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/logoBlue">
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/searchTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/search_box_background"
+            android:elevation="2dp"
+            android:fontFamily="@font/poppins_thin"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/search_now"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@id/homeTabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="2dp"
+            android:padding="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@id/searchTv"
+            app:layout_constraintEnd_toEndOf="@id/searchTv"
+            app:layout_constraintTop_toTopOf="@id/searchTv" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/homeTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toTopOf="@id/homeViewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchTv"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@color/white"
+            app:tabTextAppearance="@style/tabLayout_text" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/homeViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeTabLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
