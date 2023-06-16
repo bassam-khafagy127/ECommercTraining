@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/edProductName"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/product_name"
+            android:inputType="textImeMultiLine"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edProductCategory"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="16dp"
+            android:hint="@string/product_category"
+            android:inputType="textImeMultiLine"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toEndOf="@id/edProductName"
+            app:layout_constraintStart_toStartOf="@id/edProductName"
+            app:layout_constraintTop_toBottomOf="@id/edProductName" />
+
+
+        <EditText
+            android:id="@+id/edProductPrice"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/price"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toStartOf="@id/edProductDiscount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edProductCategory" />
+
+        <EditText
+            android:id="@+id/edProductDiscount"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/discount_percent"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edProductPrice"
+            app:layout_constraintTop_toBottomOf="@id/edProductCategory" />
+
+
+        <EditText
+            android:id="@+id/edProductDescription"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/description"
+            android:inputType="textImeMultiLine"
+            android:minHeight="100dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="6dp"
+            android:textAlignment="textStart"
+            app:layout_constraintEnd_toEndOf="@id/edProductName"
+            app:layout_constraintStart_toStartOf="@id/edProductName"
+            app:layout_constraintTop_toBottomOf="@id/edProductDiscount" />
+
+
+        <TextView
+            android:id="@+id/tvProductColors"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:hint="@string/colors"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toStartOf="@id/edProductDiscount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edProductDescription" />
+
+        <TextView
+            android:id="@+id/tvProductImages"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:hint="@string/imagesCount"
+            android:minHeight="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvProductColors"
+            app:layout_constraintTop_toBottomOf="@id/edProductDescription" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSelectImages"
+            style="@style/blueButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/select_images"
+            app:layout_constraintEnd_toEndOf="@id/tvProductImages"
+            app:layout_constraintStart_toStartOf="@id/tvProductImages"
+            app:layout_constraintTop_toBottomOf="@id/tvProductImages" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSelectColors"
+            style="@style/blueButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/select_color"
+            app:layout_constraintEnd_toEndOf="@id/tvProductColors"
+            app:layout_constraintStart_toStartOf="@id/tvProductColors"
+            app:layout_constraintTop_toBottomOf="@id/tvProductColors" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

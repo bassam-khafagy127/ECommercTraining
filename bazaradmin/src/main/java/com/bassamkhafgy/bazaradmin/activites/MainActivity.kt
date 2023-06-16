@@ -1,7 +1,8 @@
-package com.bassamkhafgy.bazaradmin
+package com.bassamkhafgy.bazaradmin.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bassamkhafgy.bazaradmin.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
