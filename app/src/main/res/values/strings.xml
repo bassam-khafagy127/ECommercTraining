@@ -22,4 +22,6 @@
     <string name="cancel">Cancel</string>
     <string name="send">Send</string>
     <string name="search_now">Search Now</string>
+    <string name="best_deals">Best Deals</string>
+    <string name="best_products">Best Products</string>
 </resources>
